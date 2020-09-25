@@ -1,8 +1,28 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/about/index",
+    "pages/home/index"
   ],
+  "tabBar": {
+    "selectedColor": "#1296db",
+    "color": "#7A7E83",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "images/icon_home.png",
+        "selectedIconPath": "images/icon_home_active.png",
+        "text": "答题"
+      },
+      {
+        "pagePath": "pages/about/index",
+        "iconPath": "images/icon_about.png",
+        "selectedIconPath": "images/icon_about_active.png",
+        "text": "关于"
+      }
+    ]
+  },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
