@@ -31,6 +31,13 @@ Component({
         author_badge: wx.setStorageSync('author_badge', false)
       })
     },
+    aboutMe: function () {
+      wx.showModal({
+        title: '关于',
+        content: wx.getStorageSync('about_me'),
+        showCancel: false
+      })
+    },
     showComingSoon: function () {
       wx.showToast({
         title: '开发中，马上来',

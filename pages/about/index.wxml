@@ -21,6 +21,9 @@
           <mp-badge wx:if="{{author_badge}}" style="margin-left: 5px;margin-right: 5px;"/>
         </view>
       </mp-cell>
+      <mp-cell title="关于小程序" link hover bindtap="aboutMe">
+        <mp-icon slot="icon" icon="sticker" color="#FFCC00" style="margin-right: 10px;"/>
+      </mp-cell>
     </mp-cells>
   </view>
 </view>
