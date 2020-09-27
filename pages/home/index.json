@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "进击的钢小招题库",
+  "enablePullDownRefresh": true,
+  "component": true,
   "usingComponents": {}
 }

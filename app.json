@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/about/index",
-    "pages/home/index"
+    "pages/home/index",
+    "pages/about/index"
   ],
   "tabBar": {
     "selectedColor": "#1296db",
@@ -13,7 +13,7 @@
         "pagePath": "pages/home/index",
         "iconPath": "images/icon_home.png",
         "selectedIconPath": "images/icon_home_active.png",
-        "text": "答题"
+        "text": "每日答题"
       },
       {
         "pagePath": "pages/about/index",

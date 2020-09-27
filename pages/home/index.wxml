@@ -1,2 +1,16 @@
 <!--pages/home/index.wxml-->
-<text>pages/home/index.wxml</text>
+<view class="page">
+  <view class="page__bd">
+    <view style="padding: 15px;color: #ccc;">
+      Tips:{{answer_tips}}
+    </view>
+    <block wx:for="{{answer_list}}" wx:key="index" wx:for-item="item">
+      <view class="answer-box">
+        <view class="box">
+          <text class="date">日期:{{item.dateUpdate}}</text>
+          <view class="body">{{item.title}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
