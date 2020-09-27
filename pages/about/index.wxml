@@ -1,2 +1,26 @@
 <!--pages/about/index.wxml-->
-<text>pages/about/index.wxml</text>
+<view class="page">
+  <view class="page__bd">
+    <mp-cells title="动力支持">
+      <mp-cell title="给个赞赏" link hover bindtap="showStar">
+        <mp-icon slot="icon" icon="like" color="#FF0033" style="margin-right: 10px;"/>
+        <view slot="footer">
+          <mp-badge wx:if="{{star_badge}}" style="margin-left: 5px;margin-right: 5px;"/>
+        </view>
+      </mp-cell>
+    </mp-cells>
+    <mp-cells title="反馈">
+      <mp-cell title="意见建议" link hover bindtap="showComingSoon">
+        <mp-icon slot="icon" icon="pencil" color="#336699" style="margin-right: 10px;"/>
+      </mp-cell>
+    </mp-cells>
+    <mp-cells title="关于">
+      <mp-cell title="联系作者" link hover bindtap="showAuthor">
+        <mp-icon slot="icon" icon="contacts" color="#3399CC" style="margin-right: 10px;"/>
+        <view slot="footer">
+          <mp-badge wx:if="{{author_badge}}" style="margin-left: 5px;margin-right: 5px;"/>
+        </view>
+      </mp-cell>
+    </mp-cells>
+  </view>
+</view>

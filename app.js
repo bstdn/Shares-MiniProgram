@@ -1,6 +1,10 @@
 //app.js
+const WXAPI = require('apifm-wxapi')
+const CONFIG = require('./config')
+
 App({
   onLaunch: function () {
+    WXAPI.init(CONFIG.subDomain)
     // 检测新版本
     const updateManager = wx.getUpdateManager()
     updateManager.onUpdateReady(() => {
@@ -46,6 +50,17 @@ App({
       } else {
         this.globalData.isConnected = true
         wx.hideToast()
+      }
+    })
+
+    /**
+     * 获取系统参数
+     */
+    WXAPI.queryConfigBatch('answer_cid,share_title,image_author,image_star').then(res => {
+      if (res.code === 0) {
+        res.data.forEach(config => {
+          wx.setStorageSync(config.key, config.value)
+        })
       }
     })
   },
