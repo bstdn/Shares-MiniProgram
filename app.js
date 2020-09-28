@@ -56,7 +56,7 @@ App({
     /**
      * 获取系统参数
      */
-    WXAPI.queryConfigBatch('answer_cid,answer_tips,about_me,share_title,image_author,image_star').then(res => {
+    WXAPI.queryConfigBatch('answer_cid,about_me,share_title,image_author,image_star').then(res => {
       if (res.code === 0) {
         res.data.forEach(config => {
           wx.setStorageSync(config.key, config.value)

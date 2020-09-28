@@ -19,11 +19,7 @@ Component({
      * 在组件实例进入页面节点树时执行
      */
     attached: function () {
-      setTimeout(() => {
-        this.setData({
-          answer_tips: wx.getStorageSync('answer_tips')
-        })
-      }, 200)
+      this.setAnswerTips()
       this.getAnswerList()
     }
   },
@@ -33,7 +29,8 @@ Component({
      */
     onShareAppMessage: function () {
       return {
-        title: wx.getStorageSync('share_title') || undefined
+        title: wx.getStorageSync('share_title') || undefined,
+        imageUrl: '/images/shares.png'
       }
     },
     /**
@@ -41,6 +38,23 @@ Component({
      */
     onPullDownRefresh: function () {
       this.getAnswerList()
+    },
+    setAnswerTips: function () {
+      const answer_tips = wx.getStorageSync('answer_tips')
+      if (answer_tips) {
+        this.setData({
+          answer_tips
+        })
+      } else {
+        WXAPI.queryConfigValue('answer_tips').then(res => {
+          if (res.code === 0) {
+            this.setData({
+              answer_tips: res.data
+            })
+            wx.setStorageSync('answer_tips', res.data)
+          }
+        })
+      }
     },
     async getAnswerList() {
       const params = {

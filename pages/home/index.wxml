@@ -7,7 +7,7 @@
     <block wx:for="{{answer_list}}" wx:key="index" wx:for-item="item">
       <view class="answer-box">
         <view class="box">
-          <text class="date">日期:{{item.dateUpdate}}</text>
+          <text class="date">日期:{{item.dateUpdate ? item.dateUpdate : item.dateAdd}}</text>
           <view class="body">{{item.title}}</view>
         </view>
       </view>
