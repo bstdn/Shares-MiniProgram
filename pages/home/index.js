@@ -59,7 +59,7 @@ Component({
     async getAnswerList() {
       const params = {
         page: 1,
-        pageSize: 20,
+        pageSize: wx.getStorageSync('answer_pageSize') || 20,
         categoryId: wx.getStorageSync('answer_cid')
       }
       wx.showToast({
