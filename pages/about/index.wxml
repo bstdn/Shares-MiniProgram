@@ -5,22 +5,35 @@
       <mp-cell title="给个赞赏" link hover bindtap="showStar">
         <mp-icon slot="icon" icon="like" color="#FF0033" style="margin-right: 10px;"/>
         <view slot="footer">
-          <mp-badge wx:if="{{star_badge}}" style="margin-left: 5px;margin-right: 5px;"/>
+          <mp-badge wx:if="{{badgeData.star}}" style="margin-left: 5px;margin-right: 5px;"/>
         </view>
       </mp-cell>
     </mp-cells>
     <mp-cells title="反馈">
-      <mp-cell title="意见建议" link hover bindtap="showComingSoon">
-        <mp-icon slot="icon" icon="pencil" color="#336699" style="margin-right: 10px;"/>
-      </mp-cell>
+      <button id="feedback" class="no_button" open-type='feedback' bindtap="clickBadge">
+        <mp-cell title="意见建议" link hover>
+          <mp-icon slot="icon" icon="pencil" color="#336699" style="margin-right: 10px;"/>
+          <view slot="footer">
+            <mp-badge wx:if="{{badgeData.feedback}}" style="margin-left: 5px;margin-right: 5px;"/>
+          </view>
+        </mp-cell>
+      </button>
     </mp-cells>
     <mp-cells title="关于">
       <mp-cell title="联系作者" link hover bindtap="showAuthor">
         <mp-icon slot="icon" icon="contacts" color="#3399CC" style="margin-right: 10px;"/>
         <view slot="footer">
-          <mp-badge wx:if="{{author_badge}}" style="margin-left: 5px;margin-right: 5px;"/>
+          <mp-badge wx:if="{{badgeData.author}}" style="margin-left: 5px;margin-right: 5px;"/>
         </view>
       </mp-cell>
+      <button id="share" class="no_button" open-type='share' bindtap="clickBadge">
+        <mp-cell title="转发分享" link hover>
+          <mp-icon slot="icon" icon="share" color="#ff3300" style="margin-right: 10px;"/>
+          <view slot="footer">
+            <mp-badge wx:if="{{badgeData.share}}" style="margin-left: 5px;margin-right: 5px;"/>
+          </view>
+        </mp-cell>
+      </button>
       <mp-cell title="关于小程序" link hover bindtap="aboutMe">
         <mp-icon slot="icon" icon="sticker" color="#FFCC00" style="margin-right: 10px;"/>
       </mp-cell>
