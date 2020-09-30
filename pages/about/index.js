@@ -11,6 +11,16 @@ Component({
       wx.showShareMenu({
         withShareTicket: true
       })
+    },
+    /**
+     * 在组件实例进入页面节点树时执行
+     */
+    attached: function () {
+      for (const key of ['star', 'author', 'feedback', 'share']) {
+        this.setData({
+          [`badgeData.${key}`]: wx.getStorageSync(key + '_badge') === false ? false : true
+        })
+      }
     }
   },
   methods: {
@@ -24,20 +34,14 @@ Component({
         imageUrl: '/images/shares.png'
       }
     },
-    onShow: function () {
-      for (const key of ['star', 'author', 'feedback', 'share']) {
-        this.setData({
-          [`badgeData.${key}`]: wx.getStorageSync(key + '_badge') === false ? false : true
-        })
-      }
-    },
     clickBadge: function (e) {
-      this.badgeChange(e.currentTarget.id, false)
+      this.badgeChange(e.currentTarget.id)
     },
     badgeChange: function (key, value = false) {
       this.setData({
-        [`formData.${key}_badge`]: wx.setStorageSync(key + '_badge', value)
+        [`badgeData.${key}`]: value
       })
+      wx.setStorageSync(key + '_badge', value)
     },
     showStar: function () {
       wx.previewImage({
