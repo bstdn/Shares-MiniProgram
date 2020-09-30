@@ -1,6 +1,7 @@
 //app.js
 const WXAPI = require('apifm-wxapi')
 const CONFIG = require('./config')
+const AUTH = require('./utils/auth')
 
 App({
   onLaunch: function () {
@@ -61,6 +62,17 @@ App({
         res.data.forEach(config => {
           wx.setStorageSync(config.key, config.value)
         })
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    AUTH.checkHasLoggedIn().then(loggedIn => {
+      if (!loggedIn) {
+        AUTH.login()
       }
     })
   },

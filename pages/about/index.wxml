@@ -1,6 +1,15 @@
 <!--pages/about/index.wxml-->
+<import src="/template/login/index.wxml"/>
 <view class="page">
   <view class="page__bd">
+    <view wx:if="{{apiUserInfoMap}}" class="userinfo">
+      <image wx:if="{{apiUserInfoMap.base.avatarUrl}}" class="userinfo-avatar" src="{{ apiUserInfoMap.base.avatarUrl }}" background-size="cover"/>
+      <text class="userinfo-nickname" bindtap="logout">{{apiUserInfoMap.base.nick}}</text>
+    </view>
+    <view wx:else class="userinfo">
+      <image class="userinfo-avatar" src="/images/no_login.png" background-size="cover"/>
+      <button class="weui-btn mini-btn" plain="true" size="mini" bindtap="goLogin">立即登录</button>
+    </view>
     <mp-cells title="动力支持">
       <mp-cell title="给个赞赏" link hover bindtap="showStar">
         <mp-icon slot="icon" icon="like" color="#FF0033" style="margin-right: 10px;"/>
@@ -40,3 +49,4 @@
     </mp-cells>
   </view>
 </view>
+<template is="apifmLogin" data="{{wxLogin}}"/>

@@ -1,5 +1,9 @@
 // pages/about/index.js
+const behavior = require('../../utils/behavior')
+const AUTH = require('../../utils/auth')
+
 Component({
+  behaviors: [behavior],
   data: {
     badgeData: {}
   },
@@ -18,12 +22,25 @@ Component({
     attached: function () {
       for (const key of ['star', 'author', 'feedback', 'share']) {
         this.setData({
-          [`badgeData.${key}`]: wx.getStorageSync(key + '_badge') === false ? false : true
+          [`badgeData.${key}`]: wx.getStorageSync(key + '_badge') !== false
         })
       }
     }
   },
   methods: {
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+      AUTH.checkHasLoggedIn().then(loggedIn => {
+        this.setData({
+          wxLogin: loggedIn
+        })
+        if (loggedIn) {
+          this.getUserApiInfo()
+        }
+      })
+    },
     /**
      * 用户点击右上角转发
      */
