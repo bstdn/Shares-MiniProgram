@@ -18,6 +18,14 @@
         </view>
       </mp-cell>
     </mp-cells>
+    <mp-cells title="功能模块">
+      <mp-cell title="打卡" link hover bindtap="goSign">
+        <mp-icon slot="icon" icon="tag" color="#FF00FF" style="margin-right: 10px;"/>
+        <view slot="footer">
+          <mp-badge wx:if="{{badgeData.sign}}" style="margin-left: 5px;margin-right: 5px;"/>
+        </view>
+      </mp-cell>
+    </mp-cells>
     <mp-cells title="反馈">
       <button id="feedback" class="no_button" open-type='feedback' bindtap="clickBadge">
         <mp-cell title="意见建议" link hover>

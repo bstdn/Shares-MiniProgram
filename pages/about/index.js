@@ -20,7 +20,7 @@ Component({
      * 在组件实例进入页面节点树时执行
      */
     attached: function () {
-      for (const key of ['star', 'author', 'feedback', 'share']) {
+      for (const key of ['star', 'sign', 'author', 'feedback', 'share']) {
         this.setData({
           [`badgeData.${key}`]: wx.getStorageSync(key + '_badge') !== false
         })
@@ -50,6 +50,12 @@ Component({
         path: '/pages/home/index',
         imageUrl: '/images/shares.png'
       }
+    },
+    goSign: function () {
+      this.badgeChange('sign')
+      wx.navigateTo({
+        url: '../sign/index',
+      })
     },
     clickBadge: function (e) {
       this.badgeChange(e.currentTarget.id)

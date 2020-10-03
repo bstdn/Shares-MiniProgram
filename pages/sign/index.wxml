@@ -1,0 +1,25 @@
+<!--pages/sign/index.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view style="padding: 15px;color: #ccc;">
+      Tips:{{sign_tips}}
+    </view>
+    <mp-cells title="打卡">
+      <mp-cell title="上班">
+        <view slot="footer">{{firstSign}}</view>
+      </mp-cell>
+      <mp-cell title="下班">
+        <view slot="footer">{{secondSign}}</view>
+      </mp-cell>
+    </mp-cells>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" disabled="{{loading}}" bindtap="handleSign">打卡</button>
+    </view>
+
+    <view wx:if="{{signLog.length > 0}}" style="text-align: center;color: #acacac;">
+      <view style="margin: 10rpx 0;">打卡记录</view>
+      <view wx:for="{{signLog}}" wx:key="index">{{item}}</view>
+    </view>
+  </view>
+</view>
