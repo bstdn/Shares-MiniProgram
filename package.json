@@ -1,6 +1,6 @@
 {
   "name": "Shares-MiniProgram",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "阿钢在进击答题赢积分答题题库",
   "main": "app.js",
   "dependencies": {
