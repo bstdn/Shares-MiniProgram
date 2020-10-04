@@ -1,8 +1,11 @@
 // pages/sign/index.js
+const behavior = require('../../utils/behavior')
 const WXAPI = require('apifm-wxapi')
+const AUTH = require('../../utils/auth')
 const util = require('../../utils/util')
 
 Component({
+  behaviors: [behavior],
   data: {
     loading: false,
     sign_tips: '',
@@ -12,6 +15,14 @@ Component({
     signLog: []
   },
   lifetimes: {
+    /**
+     * 在组件实例刚刚被创建时执行
+     */
+    created: function () {
+      wx.showShareMenu({
+        withShareTicket: true
+      })
+    },
     /**
      * 在组件实例进入页面节点树时执行
      */
@@ -24,7 +35,27 @@ Component({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-      this.getDetail()
+      AUTH.checkHasLoggedIn().then(loggedIn => {
+        this.setData({
+          wxLogin: loggedIn
+        })
+        if (loggedIn) {
+          this.getUserApiInfo()
+          this.getDetail()
+        }
+      })
+    },
+    /**
+     * 用户点击右上角转发
+     */
+    onShareAppMessage: function () {
+      let title = wx.getStorageSync('MiniProgram_name') || undefined
+      if (title) {
+        title += '-打卡'
+      }
+      return {
+        title
+      }
     },
     getDetail: function () {
       WXAPI.jsonList({
@@ -64,19 +95,8 @@ Component({
       }
     },
     handleSign: function () {
-      const token = wx.getStorageSync('token')
-      if (!token) {
-        wx.showModal({
-          title: '提示',
-          content: '请先登录',
-          success: res => {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '../about/index',
-              })
-            }
-          }
-        })
+      if (!this.data.apiUserInfoMap) {
+        this.goLogin()
         return
       }
       this.setData({
@@ -96,8 +116,8 @@ Component({
       }
       let params = {
         content: JSON.stringify(content),
-        type: 'sign',
-        token
+        token: wx.getStorageSync('token'),
+        type: 'sign'
       }
       if (this.data.currentId) {
         params.id = this.data.currentId
