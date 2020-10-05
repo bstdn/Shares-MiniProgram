@@ -57,6 +57,11 @@ Component({
         url: '../sign/index',
       })
     },
+    goAdmin: function () {
+      wx.navigateTo({
+        url: '../admin/index',
+      })
+    },
     clickBadge: function (e) {
       this.badgeChange(e.currentTarget.id)
     },

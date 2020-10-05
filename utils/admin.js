@@ -12,6 +12,21 @@ const request = function request(url, method, data) {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: res => {
+        if (res.data.code === 100000) {
+          wx.showModal({
+            title: '操作失败',
+            content: '请先登录',
+            showCancel: false,
+            success: res => {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/admin/index',
+                })
+              }
+            }
+          })
+          reject('error')
+        }
         resolve(res.data)
       },
       fail: error => {
@@ -45,6 +60,9 @@ module.exports = {
   },
   userInfo: () => {
     return request('/user/info', 'get', {})
+  },
+  apiExtNewsSave: data => {
+    return request('/user/apiExtNews/save', 'post', data)
   },
   checkHasLoggedIn
 }

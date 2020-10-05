@@ -1,0 +1,9 @@
+/* pages/dashboard/index.wxss */
+
+.my-tabbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+}

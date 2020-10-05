@@ -25,6 +25,9 @@
           <mp-badge wx:if="{{badgeData.sign}}" style="margin-left: 5px;margin-right: 5px;"/>
         </view>
       </mp-cell>
+      <mp-cell title="管理入口" link hover bindtap="goAdmin">
+        <mp-icon slot="icon" icon="me" color="#0099CC" style="margin-right: 10px;"/>
+      </mp-cell>
     </mp-cells>
     <mp-cells title="反馈">
       <button id="feedback" class="no_button" open-type='feedback' bindtap="clickBadge">

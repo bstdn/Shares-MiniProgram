@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/home/index",
+    "pages/dashboard/index",
     "pages/admin/index",
     "pages/sign/index",
     "pages/about/index"

@@ -1,0 +1,25 @@
+<!--pages/dashboard/index.wxml-->
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"/>
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <block wx:if="{{current === 0}}">
+      <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+        <mp-cells title="每日答题">
+          <mp-cell show-error prop="title">
+            <input bindinput="formInputChange" data-field="title" class="weui-input" value="{{formData.title}}" placeholder="招行答题答案"/>
+          </mp-cell>
+        </mp-cells>
+      </mp-form>
+
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" disabled="{{loading}}" bindtap="submitForm">提交</button>
+        <button class="weui-btn" plain="true" bindtap="goHome">返回首页</button>
+      </view>
+    </block>
+    <block wx:elif="{{current === 1}}">
+      Coming soon
+    </block>
+  </view>
+
+  <mp-tabbar ext-class="my-tabbar" list="{{list}}" current="{{current}}" bindchange="tabChange"/>
+</view>

@@ -1,10 +1,15 @@
-// utils/behavior.js
+// utils/behavior-admin.js
 const ADMIN = require('./admin')
 
 module.exports = Behavior({
   data: {
   },
   methods: {
+    goHome() {
+      wx.switchTab({
+        url: '/pages/home/index',
+      })
+    },
     goLogin() {
       wx.navigateTo({
         url: '/pages/admin/index',
