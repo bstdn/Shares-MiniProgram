@@ -1,0 +1,10 @@
+/* pages/admin/index.wxss */
+
+.vcode-img {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 80px;
+  height: 40px;
+  z-index: 999;
+}
