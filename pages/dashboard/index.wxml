@@ -16,9 +16,22 @@
       </view>
     </block>
     <block wx:elif="{{current === 1}}">
-      Coming soon
+      <mp-cells>
+        <block wx:for="{{newsResult.result}}" wx:key="index">
+          <mp-slideview id="{{index}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+            <mp-cell value="{{item.title}}">
+              <image wx:if="{{newsResult.userMap[item.uid]}}" slot="icon" class="userinfo-avatar" src="{{newsResult.userMap[item.uid].avatarUrl}}" background-size="cover"/>
+              <image wx:else slot="icon" class="userinfo-avatar" src="/images/no_login.png" background-size="cover"/>
+            </mp-cell>
+            <view class="my-text">{{item.dateAdd}}</view>
+          </mp-slideview>
+        </block>
+        <mp-cell wx:if="{{newsResult.length === 0}}" style="padding-top: 40px;text-align: center;">
+          暂无数据
+        </mp-cell>
+      </mp-cells>
     </block>
   </view>
 
-  <mp-tabbar ext-class="my-tabbar" list="{{list}}" current="{{current}}" bindchange="tabChange"/>
+  <mp-tabbar ext-class="my-tabbar" list="{{tabbarList}}" current="{{current}}" bindchange="tabChange"/>
 </view>

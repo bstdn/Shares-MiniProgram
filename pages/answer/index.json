@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "每日答题",
+  "component": true,
+  "usingComponents": {
+    "mp-toptips": "/miniprogram_npm/weui-miniprogram/toptips/toptips",
+    "mp-cells": "/miniprogram_npm/weui-miniprogram/cells/cells",
+    "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
+    "mp-form": "/miniprogram_npm/weui-miniprogram/form/form"
+  }
+}

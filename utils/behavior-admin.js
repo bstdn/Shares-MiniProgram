@@ -15,9 +15,9 @@ module.exports = Behavior({
         url: '/pages/admin/index',
       })
     },
-    goDashboard() {
+    goDashboard(e) {
       wx.navigateTo({
-        url: '/pages/dashboard/index',
+        url: '/pages/dashboard/index?current=' + e.currentTarget.dataset.current,
       })
     },
     adminLogout() {

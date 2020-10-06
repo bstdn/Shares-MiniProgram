@@ -67,7 +67,6 @@ Component({
         icon: 'loading'
       })
       const res = await WXAPI.cmsArticles(params)
-      console.log('res', res)
       if (res.code === 0) {
         this.setData({
           answer_list: res.data

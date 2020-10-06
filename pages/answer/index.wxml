@@ -1,0 +1,27 @@
+<!--pages/answer/index.wxml-->
+<import src="/template/login/index.wxml"/>
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"/>
+<view class="page">
+  <view class="page__bd">
+    <view wx:if="{{apiUserInfoMap}}" class="userinfo">
+      <image wx:if="{{apiUserInfoMap.base.avatarUrl}}" class="userinfo-avatar" src="{{ apiUserInfoMap.base.avatarUrl }}" background-size="cover"/>
+      <text class="userinfo-nickname" bindtap="logout">{{apiUserInfoMap.base.nick}}</text>
+    </view>
+    <view wx:else class="userinfo">
+      <image class="userinfo-avatar" src="/images/no_login.png" background-size="cover"/>
+      <button class="weui-btn mini-btn" plain="true" size="mini" bindtap="showLogin">立即登录</button>
+    </view>
+    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+      <mp-cells title="每日答题" footer="如：积分答题c 招行答题babad">
+        <mp-cell show-error prop="title">
+          <input bindinput="formInputChange" data-field="title" class="weui-input" value="{{formData.title}}" placeholder="招行答题答案"/>
+        </mp-cell>
+      </mp-cells>
+    </mp-form>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" disabled="{{loading}}" bindtap="submitForm">提交</button>
+    </view>
+  </view>
+</view>
+<template is="apifmLogin" data="{{wxLogin}}"/>

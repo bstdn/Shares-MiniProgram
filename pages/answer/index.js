@@ -1,41 +1,35 @@
-// pages/admin/index.js
-const behaviorAdmin = require('../../utils/behavior-admin')
-const ADMIN = require('../../utils/admin')
+// pages/answer/index.js
+const WXAPI = require('apifm-wxapi')
+const behavior = require('../../utils/behavior')
+const AUTH = require('../../utils/auth')
 
 Component({
-  behaviors: [behaviorAdmin],
+  behaviors: [behavior],
   data: {
     loading: false,
-    formData: {},
+    defaultTitle: '积分答题 招行答题',
+    formData: {
+      title: '',
+      categoryId: wx.getStorageSync('answer_cid'),
+      content: '1',
+      descript: '1',
+      keywords: '1'
+    },
     rules: [{
-      name: 'userName',
+      name: 'title',
       rules: {
         required: true,
-        message: '请输入登录账号'
+        message: '请输入答案'
       }
-    }, {
-      name: 'pwd',
-      rules: {
-        required: true,
-        message: '请输入登录密码'
-      }
-    }, {
-      name: 'imgcode',
-      rules: {
-        required: true,
-        message: '请输入验证码'
-      }
-    }],
-    img_key: undefined
+    }]
   },
   lifetimes: {
     /**
      * 在组件实例进入页面节点树时执行
      */
     attached: function () {
-      this.setImgKey()
       this.setData({
-        [`formData.userName`]: wx.getStorageSync('userName')
+        [`formData.title`]: this.data.defaultTitle
       })
     }
   },
@@ -44,16 +38,13 @@ Component({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-      ADMIN.checkHasLoggedIn().then(loggedIn => {
+      AUTH.checkHasLoggedIn().then(loggedIn => {
+        this.setData({
+          wxLogin: loggedIn
+        })
         if (loggedIn) {
-          this.getAdminUserInfo()
+          this.getUserApiInfo()
         }
-      })
-    },
-    setImgKey: function () {
-      this.setData({
-        [`formData.imgcode`]: '',
-        img_key: Math.random()
       })
     },
     formInputChange(e) {
@@ -74,32 +65,34 @@ Component({
             })
           }
         } else {
+          if (!this.data.apiUserInfoMap) {
+            this.showLogin()
+            return
+          }
           const params = {
             ...this.data.formData,
-            k: this.data.img_key
+            token: wx.getStorageSync('token')
           }
           this.setData({
             loading: true
           })
-          ADMIN.login(params).then(res => {
+          WXAPI.cmsArticleCreate(params).then(res => {
             if (res.code !== 0) {
-              this.setImgKey()
               this.setData({
-                error: res.code === 404 ? '账号或密码错误' : res.msg,
+                error: res.msg,
                 loading: false
               })
               return
             }
-            wx.setStorageSync('x-token', res.data.token)
-            wx.setStorageSync('userName', this.data.formData.userName)
+            wx.showModal({
+              title: '提交成功',
+              content: '感谢你的分享，请耐心等待审核通过，或联系作者处理~(*^_^*)~',
+              showCancel: false
+            })
             this.setData({
+              [`formData.title`]: this.data.defaultTitle,
               loading: false
             })
-            wx.showToast({
-              title: '登录成功',
-              icon: 'none'
-            })
-            this.onShow()
           })
         }
       })

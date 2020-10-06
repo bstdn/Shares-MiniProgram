@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/home/index",
+    "pages/answer/index",
     "pages/dashboard/index",
     "pages/admin/index",
     "pages/sign/index",
@@ -17,6 +18,12 @@
         "iconPath": "images/icon_home.png",
         "selectedIconPath": "images/icon_home_active.png",
         "text": "每日答题"
+      },
+      {
+        "pagePath": "pages/answer/index",
+        "iconPath": "images/icon_message.png",
+        "selectedIconPath": "images/icon_message_active.png",
+        "text": "提交答案"
       },
       {
         "pagePath": "pages/about/index",

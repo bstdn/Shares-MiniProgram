@@ -16,7 +16,7 @@ const request = function request(url, method, data) {
         if (res.data.code === 100000) {
           wx.showModal({
             title: '提示',
-            content: res.data.msg,
+            content: '登录超时，请重新登录',
             showCancel: false,
             success: res => {
               if (res.confirm) {
@@ -67,6 +67,9 @@ module.exports = {
   },
   apiExtNewsSave: data => {
     return request('/user/apiExtNews/save', 'post', data)
+  },
+  apiExtNewsList: data => {
+    return request('/user/apiExtNews/list', 'post', data)
   },
   checkHasLoggedIn
 }

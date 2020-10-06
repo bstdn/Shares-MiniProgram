@@ -1,6 +1,6 @@
 // pages/sign/index.js
-const behavior = require('../../utils/behavior')
 const WXAPI = require('apifm-wxapi')
+const behavior = require('../../utils/behavior')
 const AUTH = require('../../utils/auth')
 const util = require('../../utils/util')
 

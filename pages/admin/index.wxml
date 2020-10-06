@@ -3,7 +3,8 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view wx:if="{{adminUserInfoMap}}" class="page__bd">
     <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="goDashboard">每日答题</button>
+      <button data-current="0" class="weui-btn" type="primary" bindtap="goDashboard">每日答题</button>
+      <button data-current="1" class="weui-btn" type="primary" bindtap="goDashboard">审核答案</button>
       <button class="weui-btn" type="warn" plain="true" bindtap="adminLogout">退出登录</button>
     </view>
   </view>

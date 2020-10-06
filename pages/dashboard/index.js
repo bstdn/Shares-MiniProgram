@@ -5,8 +5,8 @@ const ADMIN = require('../../utils/admin')
 Component({
   behaviors: [behaviorAdmin],
   data: {
-    current: 0,
-    list: [{
+    current: 1,
+    tabbarList: [{
         "text": "答题",
         "iconPath": "/images/icon_answer.png",
         "selectedIconPath": "/images/icon_answer_active.png"
@@ -31,9 +31,31 @@ Component({
         required: true,
         message: '请输入答案'
       }
-    }]
+    }],
+    slideButtons: [
+      {
+        type: 'warn',
+        text: '拒绝',
+        status: 1
+      },
+      {
+        text: '通过',
+        status: 2
+      }
+    ],
+    newsResult: []
   },
   methods: {
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (e) {
+      if (e && e.current) {
+        this.setData({
+          current: +e.current
+        })
+      }
+    },
     /**
      * 生命周期函数--监听页面显示
      */
@@ -44,10 +66,17 @@ Component({
         }
       })
       this.changeNavBarTitle()
+      this.getList()
+    },
+    /**
+     * 监听用户下拉刷新事件
+     */
+    onPullDownRefresh: function () {
+      this.getList()
     },
     changeNavBarTitle: function () {
       wx.setNavigationBarTitle({
-        title: this.data.list[this.data.current].text,
+        title: this.data.tabbarList[this.data.current].text,
       })
     },
     formInputChange(e) {
@@ -77,7 +106,6 @@ Component({
           const params = {
             ...this.data.formData
           }
-          console.log('params', params)
           this.setData({
             loading: true
           })
@@ -101,6 +129,45 @@ Component({
               loading: false
             })
           })
+        }
+      })
+    },
+    async getList() {
+      const parmas = {
+        page: 1,
+        pageSize: wx.getStorageSync('answer_pageSize') || 20,
+        categoryId: wx.getStorageSync('answer_cid'),
+        status: 0
+      }
+      wx.showToast({
+        title: '数据加载中',
+        icon: 'loading'
+      })
+      const res = await ADMIN.apiExtNewsList(parmas)
+      if (res.code === 0) {
+        this.setData({
+          newsResult: res.data
+        })
+      }
+      wx.stopPullDownRefresh()
+      wx.hideToast()
+    },
+    slideButtonTap: function (e) {
+      const item = this.data.newsResult.result[e.currentTarget.id]
+      const params = {
+        ...item,
+        status: this.data.slideButtons[e.detail.index].status
+      }
+      wx.showModal({
+        title: '提示',
+        content: '确定要' + this.data.slideButtons[e.detail.index].text + '该条数据吗?',
+        success: async res => {
+          if (res.confirm) {
+            const saveRes = await ADMIN.apiExtNewsSave(params)
+            if (saveRes.code === 0) {
+              this.getList()
+            }
+          }
         }
       })
     }
