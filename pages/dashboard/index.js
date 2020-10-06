@@ -5,7 +5,7 @@ const ADMIN = require('../../utils/admin')
 Component({
   behaviors: [behaviorAdmin],
   data: {
-    current: 1,
+    current: 0,
     tabbarList: [{
         "text": "答题",
         "iconPath": "/images/icon_answer.png",
@@ -32,17 +32,16 @@ Component({
         message: '请输入答案'
       }
     }],
-    slideButtons: [
-      {
-        type: 'warn',
-        text: '拒绝',
-        status: 1
-      },
-      {
-        text: '通过',
-        status: 2
-      }
-    ],
+    slideButtons: [{
+      type: 'warn',
+      text: '拒绝',
+      status: 1
+    }, {
+      text: '通过',
+      status: 2
+    }],
+    statusArr: ['待审核', '不通过'],
+    status: 0,
     newsResult: []
   },
   methods: {
@@ -66,7 +65,9 @@ Component({
         }
       })
       this.changeNavBarTitle()
-      this.getList()
+      if (this.data.current === 1) {
+        this.getList()
+      }
     },
     /**
      * 监听用户下拉刷新事件
@@ -92,6 +93,9 @@ Component({
         current: e.detail.index
       })
       this.changeNavBarTitle()
+      if (this.data.current === 1) {
+        this.getList()
+      }
     },
     submitForm() {
       this.selectComponent('#form').validate((valid, errors) => {
@@ -132,12 +136,18 @@ Component({
         }
       })
     },
+    bindStatusChange: function (e) {
+      this.setData({
+        status: +e.detail.value
+      })
+      this.getList()
+    },
     async getList() {
       const parmas = {
         page: 1,
         pageSize: wx.getStorageSync('answer_pageSize') || 20,
         categoryId: wx.getStorageSync('answer_cid'),
-        status: 0
+        status: this.data.status
       }
       wx.showToast({
         title: '数据加载中',
@@ -147,6 +157,10 @@ Component({
       if (res.code === 0) {
         this.setData({
           newsResult: res.data
+        })
+      } else {
+        this.setData({
+          newsResult: []
         })
       }
       wx.stopPullDownRefresh()

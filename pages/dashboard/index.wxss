@@ -21,3 +21,6 @@
   padding-right: 10px;
   color: #ccc;
 }
+.my-cell .weui-cell__hd {
+  width: 105px;
+}
