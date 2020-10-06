@@ -7,12 +7,12 @@ module.exports = Behavior({
     wxLogin: true
   },
   methods: {
-    cancelLogin() {
+    hideLogin() {
       this.setData({
         wxLogin: true
       })
     },
-    goLogin() {
+    showLogin() {
       this.setData({
         wxLogin: false
       })

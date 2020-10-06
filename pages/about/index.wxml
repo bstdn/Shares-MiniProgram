@@ -8,7 +8,7 @@
     </view>
     <view wx:else class="userinfo">
       <image class="userinfo-avatar" src="/images/no_login.png" background-size="cover"/>
-      <button class="weui-btn mini-btn" plain="true" size="mini" bindtap="goLogin">立即登录</button>
+      <button class="weui-btn mini-btn" plain="true" size="mini" bindtap="showLogin">立即登录</button>
     </view>
     <mp-cells title="动力支持">
       <mp-cell title="给个赞赏" link hover bindtap="showStar">

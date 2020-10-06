@@ -34,6 +34,9 @@ Component({
      */
     attached: function () {
       this.setImgKey()
+      this.setData({
+        [`formData.userName`]: wx.getStorageSync('userName')
+      })
     }
   },
   methods: {
@@ -43,9 +46,7 @@ Component({
     onShow: function () {
       ADMIN.checkHasLoggedIn().then(loggedIn => {
         if (loggedIn) {
-          wx.navigateTo({
-            url: '../dashboard/index',
-          })
+          this.getAdminUserInfo()
         }
       })
     },
@@ -91,7 +92,7 @@ Component({
               return
             }
             wx.setStorageSync('x-token', res.data.token)
-            wx.setStorageSync('aid', res.data.uid)
+            wx.setStorageSync('userName', this.data.formData.userName)
             this.setData({
               loading: false
             })
@@ -99,7 +100,7 @@ Component({
               title: '登录成功',
               icon: 'none'
             })
-            this.goDashboard()
+            this.onShow()
           })
         }
       })

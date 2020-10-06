@@ -1,12 +1,18 @@
 <!--pages/admin/index.wxml-->
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"/>
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <view class="page__bd" style="padding-top: 40px;">
+  <view wx:if="{{adminUserInfoMap}}" class="page__bd">
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="goDashboard">每日答题</button>
+      <button class="weui-btn" type="warn" plain="true" bindtap="adminLogout">退出登录</button>
+    </view>
+  </view>
+  <view wx:else class="page__bd" style="padding-top: 40px;">
     <mp-form id="form" rules="{{rules}}" models="{{formData}}">
       <mp-cells>
         <mp-cell show-error prop="userName">
           <mp-icon slot="icon" icon="me" style="margin-right: 10px;"/>
-          <input bindinput="formInputChange" data-field="userName" class="weui-input" value="{{formData.mobile}}" placeholder="登录账号"/>
+          <input bindinput="formInputChange" data-field="userName" class="weui-input" value="{{formData.userName}}" placeholder="登录账号"/>
         </mp-cell>
         <mp-cell show-error prop="pwd">
           <mp-icon slot="icon" icon="lock" style="margin-right: 10px;"/>

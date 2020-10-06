@@ -20,6 +20,13 @@ module.exports = Behavior({
         url: '/pages/dashboard/index',
       })
     },
+    adminLogout() {
+      wx.removeStorageSync('x-token')
+      wx.removeStorageSync('aid')
+      this.setData({
+        adminUserInfoMap: null
+      })
+    },
     getAdminUserInfo() {
       ADMIN.userInfo().then(res => {
         if (res.code === 0) {

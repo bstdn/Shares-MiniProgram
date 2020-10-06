@@ -96,7 +96,7 @@ Component({
     },
     handleSign: function () {
       if (!this.data.apiUserInfoMap) {
-        this.goLogin()
+        this.showLogin()
         return
       }
       this.setData({

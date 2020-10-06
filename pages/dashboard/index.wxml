@@ -13,7 +13,6 @@
 
       <view class="weui-btn-area">
         <button class="weui-btn" type="primary" disabled="{{loading}}" bindtap="submitForm">提交</button>
-        <button class="weui-btn" plain="true" bindtap="goHome">返回首页</button>
       </view>
     </block>
     <block wx:elif="{{current === 1}}">
