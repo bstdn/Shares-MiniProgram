@@ -38,6 +38,13 @@ const parseTime = (time, cFormat) => {
   })
 }
 
+const getCurrentPageUrl = () => {
+  const pages = getCurrentPages()
+  const currentPage = pages[pages.length - 1]
+  return `/${currentPage.route}`
+}
+
 module.exports = {
-  parseTime
+  parseTime,
+  getCurrentPageUrl
 }

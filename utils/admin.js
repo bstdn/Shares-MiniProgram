@@ -1,4 +1,5 @@
 // utils/admin.js
+const util = require('./util')
 const ADMIN_API_BASE_URL = 'https://user.api.it120.cc'
 
 const request = function request(url, method, data) {
@@ -14,14 +15,17 @@ const request = function request(url, method, data) {
       success: res => {
         if (res.data.code === 100000) {
           wx.showModal({
-            title: '操作失败',
-            content: '请先登录',
+            title: '提示',
+            content: res.data.msg,
             showCancel: false,
             success: res => {
               if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/admin/index',
-                })
+                wx.removeStorageSync('x-token')
+                if (util.getCurrentPageUrl() !== '/pages/admin/index') {
+                  wx.navigateTo({
+                    url: '/pages/admin/index',
+                  })
+                }
               }
             }
           })
