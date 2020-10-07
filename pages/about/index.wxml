@@ -54,7 +54,7 @@
           </view>
         </mp-cell>
       </button>
-      <mp-cell title="关于小程序" link hover bindtap="aboutMe">
+      <mp-cell title="关于小程序" link hover footer="Shares v {{version}}" bindtap="aboutMe">
         <mp-icon slot="icon" icon="sticker" color="#FFCC00" style="margin-right: 10px;"/>
       </mp-cell>
     </mp-cells>

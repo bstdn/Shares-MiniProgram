@@ -1,6 +1,7 @@
 // pages/about/index.js
 const behavior = require('../../utils/behavior')
 const AUTH = require('../../utils/auth')
+const CONFIG = require('../../config')
 
 Component({
   behaviors: [behavior],
@@ -25,6 +26,9 @@ Component({
           [`badgeData.${key}`]: wx.getStorageSync(key + '_badge') !== false
         })
       }
+      this.setData({
+        version: CONFIG.version
+      })
     }
   },
   methods: {
