@@ -3,8 +3,8 @@ const WXAPI = require('apifm-wxapi')
 
 Component({
   data: {
-    answer_tips: '',
-    answer_list: []
+    answerTips: '',
+    answerList: []
   },
   lifetimes: {
     /**
@@ -29,7 +29,7 @@ Component({
      */
     onShareAppMessage: function () {
       return {
-        title: wx.getStorageSync('share_title') || undefined,
+        title: wx.getStorageSync('shareTitle') || undefined,
         imageUrl: '/images/shares.png'
       }
     },
@@ -40,18 +40,18 @@ Component({
       this.getAnswerList()
     },
     setAnswerTips: function () {
-      const answer_tips = wx.getStorageSync('answer_tips')
-      if (answer_tips) {
+      const answerTips = wx.getStorageSync('answerTips')
+      if (answerTips) {
         this.setData({
-          answer_tips
+          answerTips
         })
       } else {
-        WXAPI.queryConfigValue('answer_tips').then(res => {
+        WXAPI.queryConfigValue('answerTips').then(res => {
           if (res.code === 0) {
             this.setData({
-              answer_tips: res.data
+              answerTips: res.data
             })
-            wx.setStorageSync('answer_tips', res.data)
+            wx.setStorageSync('answerTips', res.data)
           }
         })
       }
@@ -59,8 +59,8 @@ Component({
     async getAnswerList() {
       const params = {
         page: 1,
-        pageSize: wx.getStorageSync('answer_pageSize') || 20,
-        categoryId: wx.getStorageSync('answer_cid')
+        pageSize: wx.getStorageSync('answerPageSize') || 20,
+        categoryId: wx.getStorageSync('answerCategoryId')
       }
       wx.showToast({
         title: '数据加载中',
@@ -69,7 +69,7 @@ Component({
       const res = await WXAPI.cmsArticles(params)
       if (res.code === 0) {
         this.setData({
-          answer_list: res.data
+          answerList: res.data
         })
       }
       wx.stopPullDownRefresh()

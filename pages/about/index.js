@@ -54,7 +54,7 @@ Component({
      */
     onShareAppMessage: function () {
       return {
-        title: wx.getStorageSync('share_title') || undefined,
+        title: wx.getStorageSync('shareTitle') || undefined,
         path: '/pages/home/index',
         imageUrl: '/images/shares.png'
       }
@@ -82,7 +82,7 @@ Component({
     showStar: function () {
       wx.previewImage({
         urls: [
-          wx.getStorageSync('image_star')
+          wx.getStorageSync('imageStar')
         ]
       })
       this.badgeChange('star')
@@ -90,7 +90,7 @@ Component({
     showAuthor: function () {
       wx.previewImage({
         urls: [
-          wx.getStorageSync('image_author')
+          wx.getStorageSync('imageAuthor')
         ]
       })
       this.badgeChange('author')
@@ -98,7 +98,7 @@ Component({
     aboutMe: function () {
       wx.showModal({
         title: '关于',
-        content: wx.getStorageSync('about_me'),
+        content: wx.getStorageSync('aboutMe'),
         showCancel: false
       })
     }

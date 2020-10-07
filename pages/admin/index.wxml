@@ -22,7 +22,7 @@
         <mp-cell show-error prop="imgcode">
           <mp-icon slot="icon" icon="album" style="margin-right: 10px;"/>
           <input bindinput="formInputChange" data-field="imgcode" class="weui-input" placeholder="验证码" value="{{formData.imgcode}}"/>
-          <image wx:if="{{img_key}}" slot="footer" class="weui-vcode-img vcode-img" src="https://user.api.it120.cc/code?k={{img_key}}" bindtap="setImgKey"/>
+          <image wx:if="{{imgKey}}" slot="footer" class="weui-vcode-img vcode-img" src="https://user.api.it120.cc/code?k={{imgKey}}" bindtap="setImgKey"/>
         </mp-cell>
       </mp-cells>
     </mp-form>

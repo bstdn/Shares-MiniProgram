@@ -10,7 +10,7 @@ Component({
     defaultTitle: '积分答题 招行答题',
     formData: {
       title: '',
-      categoryId: wx.getStorageSync('answer_cid'),
+      categoryId: wx.getStorageSync('answerCategoryId'),
       content: '1',
       descript: '1',
       keywords: '1'
@@ -24,6 +24,14 @@ Component({
     }]
   },
   lifetimes: {
+    /**
+     * 在组件实例刚刚被创建时执行
+     */
+    created: function () {
+      wx.showShareMenu({
+        withShareTicket: true
+      })
+    },
     /**
      * 在组件实例进入页面节点树时执行
      */
@@ -50,6 +58,16 @@ Component({
           })
         }
       })
+    },
+    /**
+     * 用户点击右上角转发
+     */
+    onShareAppMessage: function () {
+      return {
+        title: wx.getStorageSync('shareTitle') || undefined,
+        path: '/pages/home/index',
+        imageUrl: '/images/shares.png'
+      }
     },
     formInputChange(e) {
       const {

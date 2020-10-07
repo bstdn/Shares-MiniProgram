@@ -3,7 +3,7 @@
 <view class="page">
   <view class="page__bd">
     <view style="padding: 15px;color: #ccc;">
-      Tips:{{sign_tips}}
+      Tips:{{signTips}}
     </view>
     <mp-cells title="打卡">
       <mp-cell title="上班">

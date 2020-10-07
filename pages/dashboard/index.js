@@ -20,7 +20,7 @@ Component({
     loading: false,
     formData: {
       title: '积分答题 招行答题',
-      categoryId: wx.getStorageSync('answer_cid'),
+      categoryId: wx.getStorageSync('answerCategoryId'),
       content: '1',
       descript: '1',
       keywords: '1'
@@ -145,8 +145,8 @@ Component({
     async getList() {
       const parmas = {
         page: 1,
-        pageSize: wx.getStorageSync('answer_pageSize') || 20,
-        categoryId: wx.getStorageSync('answer_cid'),
+        pageSize: wx.getStorageSync('answerPageSize') || 20,
+        categoryId: wx.getStorageSync('answerCategoryId'),
         status: this.data.status
       }
       wx.showToast({

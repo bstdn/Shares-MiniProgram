@@ -26,7 +26,7 @@ Component({
         message: '请输入验证码'
       }
     }],
-    img_key: undefined
+    imgKey: undefined
   },
   lifetimes: {
     /**
@@ -53,7 +53,7 @@ Component({
     setImgKey: function () {
       this.setData({
         [`formData.imgcode`]: '',
-        img_key: Math.random()
+        imgKey: Math.random()
       })
     },
     formInputChange(e) {
@@ -76,7 +76,7 @@ Component({
         } else {
           const params = {
             ...this.data.formData,
-            k: this.data.img_key
+            k: this.data.imgKey
           }
           this.setData({
             loading: true

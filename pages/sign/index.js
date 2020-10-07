@@ -8,7 +8,7 @@ Component({
   behaviors: [behavior],
   data: {
     loading: false,
-    sign_tips: '',
+    signTips: '',
     currentId: undefined,
     firstSign: '',
     secondSign: '',
@@ -49,7 +49,7 @@ Component({
      * 用户点击右上角转发
      */
     onShareAppMessage: function () {
-      let title = wx.getStorageSync('MiniProgram_name') || undefined
+      let title = wx.getStorageSync('miniProgramName') || undefined
       if (title) {
         title += '-打卡'
       }
@@ -78,18 +78,18 @@ Component({
       })
     },
     setSignTips: function () {
-      const sign_tips = wx.getStorageSync('sign_tips')
-      if (sign_tips) {
+      const signTips = wx.getStorageSync('signTips')
+      if (signTips) {
         this.setData({
-          sign_tips
+          signTips
         })
       } else {
-        WXAPI.queryConfigValue('sign_tips').then(res => {
+        WXAPI.queryConfigValue('signTips').then(res => {
           if (res.code === 0) {
             this.setData({
-              sign_tips: res.data
+              signTips: res.data
             })
-            wx.setStorageSync('sign_tips', res.data)
+            wx.setStorageSync('signTips', res.data)
           }
         })
       }
@@ -102,7 +102,7 @@ Component({
       this.setData({
         loading: true
       })
-      const signLogLength = wx.getStorageSync('signLog_length') || 20
+      const signLogLength = wx.getStorageSync('signLogLength') || 20
       const currentTime = new Date()
       const signLog = [...this.data.signLog]
       signLog.unshift(util.parseTime(currentTime))

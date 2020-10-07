@@ -2,8 +2,6 @@
 const ADMIN = require('./admin')
 
 module.exports = Behavior({
-  data: {
-  },
   methods: {
     goHome() {
       wx.switchTab({
