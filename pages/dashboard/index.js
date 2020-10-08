@@ -18,8 +18,9 @@ Component({
       }
     ],
     loading: false,
+    defaultTitle: '积分答题 招行答题',
     formData: {
-      title: '积分答题 招行答题',
+      title: '',
       categoryId: wx.getStorageSync('answerCategoryId'),
       content: '1',
       descript: '1',
@@ -43,6 +44,16 @@ Component({
     statusArr: ['待审核', '不通过'],
     status: 0,
     newsResult: []
+  },
+  lifetimes: {
+    /**
+     * 在组件实例进入页面节点树时执行
+     */
+    attached: function () {
+      this.setData({
+        [`formData.title`]: this.data.defaultTitle
+      })
+    }
   },
   methods: {
     /**
@@ -122,6 +133,7 @@ Component({
               return
             }
             this.setData({
+              [`formData.title`]: this.data.defaultTitle,
               loading: false
             })
             wx.showToast({

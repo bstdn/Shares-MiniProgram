@@ -4,7 +4,7 @@
   <view class="page__bd">
     <block wx:if="{{current === 0}}">
       <mp-form id="form" rules="{{rules}}" models="{{formData}}">
-        <mp-cells title="每日答题">
+        <mp-cells title="每日答题" footer="如：积分答题c 招行答题babad">
           <mp-cell show-error prop="title">
             <input bindinput="formInputChange" data-field="title" class="weui-input" value="{{formData.title}}" placeholder="招行答题答案"/>
           </mp-cell>

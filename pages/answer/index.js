@@ -108,7 +108,7 @@ Component({
             }
             wx.showModal({
               title: '提交成功',
-              content: '感谢你的分享，请耐心等待审核通过，或联系作者处理~(*^_^*)~',
+              content: wx.getStorageSync('answerSuccess'),
               showCancel: false
             })
             this.setData({
