@@ -3,7 +3,7 @@
 <view class="page">
   <view class="page__bd">
     <view wx:if="{{apiUserInfoMap}}" class="userinfo">
-      <image wx:if="{{apiUserInfoMap.base.avatarUrl}}" class="userinfo-avatar" src="{{ apiUserInfoMap.base.avatarUrl }}" background-size="cover"/>
+      <image wx:if="{{apiUserInfoMap.base.avatarUrl}}" class="userinfo-avatar" src="{{apiUserInfoMap.base.avatarUrl}}" background-size="cover"/>
       <text class="userinfo-nickname" bindtap="logout">{{apiUserInfoMap.base.nick}}</text>
     </view>
     <view wx:else class="userinfo">
@@ -19,12 +19,6 @@
       </mp-cell>
     </mp-cells>
     <mp-cells title="功能模块">
-      <mp-cell title="打卡" link hover bindtap="goSign">
-        <mp-icon slot="icon" icon="tag" color="#FF00FF" style="margin-right: 10px;"/>
-        <view slot="footer">
-          <mp-badge wx:if="{{badgeData.sign}}" style="margin-left: 5px;margin-right: 5px;"/>
-        </view>
-      </mp-cell>
       <mp-cell title="管理入口" link hover bindtap="goAdmin">
         <mp-icon slot="icon" icon="me" color="#0099CC" style="margin-right: 10px;"/>
       </mp-cell>

@@ -42,6 +42,10 @@ Component({
         if (loggedIn) {
           this.getUserApiInfo()
           this.getDetail()
+        } else {
+          this.setData({
+            apiUserInfoMap: null
+          })
         }
       })
     },

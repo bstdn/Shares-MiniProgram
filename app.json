@@ -26,6 +26,12 @@
         "text": "提交答案"
       },
       {
+        "pagePath": "pages/sign/index",
+        "iconPath": "images/icon_sign.png",
+        "selectedIconPath": "images/icon_sign_active.png",
+        "text": "打卡"
+      },
+      {
         "pagePath": "pages/about/index",
         "iconPath": "images/icon_about.png",
         "selectedIconPath": "images/icon_about_active.png",
