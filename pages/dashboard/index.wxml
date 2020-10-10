@@ -40,5 +40,15 @@
     </block>
   </view>
 
+  <mp-dialog title="编辑" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{dialogButtons}}">
+    <mp-form id="formEdit" rules="{{rules}}" models="{{formDataEdit}}">
+      <mp-cells footer="如：积分答题c 招行答题babad">
+        <mp-cell show-error prop="title">
+          <input bindinput="formInputChangeEdit" data-field="title" class="weui-input" value="{{formDataEdit.title}}" placeholder="招行答题答案"/>
+        </mp-cell>
+      </mp-cells>
+    </mp-form>
+  </mp-dialog>
+
   <mp-tabbar ext-class="my-tabbar" list="{{tabbarList}}" current="{{current}}" bindchange="tabChange"/>
 </view>

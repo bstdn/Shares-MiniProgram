@@ -7,16 +7,14 @@ Component({
   data: {
     current: 0,
     tabbarList: [{
-        "text": "答题",
-        "iconPath": "/images/icon_answer.png",
-        "selectedIconPath": "/images/icon_answer_active.png"
-      },
-      {
-        "text": "审核",
-        "iconPath": "/images/icon_examine.png",
-        "selectedIconPath": "/images/icon_examine_active.png"
-      }
-    ],
+      "text": "答题",
+      "iconPath": "/images/icon_answer.png",
+      "selectedIconPath": "/images/icon_answer_active.png"
+    }, {
+      "text": "审核",
+      "iconPath": "/images/icon_examine.png",
+      "selectedIconPath": "/images/icon_examine_active.png"
+    }],
     loading: false,
     defaultTitle: '积分答题 招行答题',
     formData: {
@@ -34,6 +32,8 @@ Component({
       }
     }],
     slideButtons: [{
+      text: '编辑'
+    }, {
       type: 'warn',
       text: '拒绝',
       status: 1
@@ -41,9 +41,22 @@ Component({
       text: '通过',
       status: 2
     }],
-    statusArr: ['待审核', '不通过'],
+    statusArr: ['待审核', '不通过', '已通过'],
     status: 0,
-    newsResult: []
+    newsResult: [],
+    dialogShow: false,
+    dialogButtons: [{
+      text: '取消'
+    }, {
+      text: '保存'
+    }],
+    formDataEdit: {
+      title: '',
+      categoryId: wx.getStorageSync('answerCategoryId'),
+      content: '1',
+      descript: '1',
+      keywords: '1'
+    }
   },
   lifetimes: {
     /**
@@ -178,8 +191,74 @@ Component({
       wx.stopPullDownRefresh()
       wx.hideToast()
     },
+    formInputChangeEdit(e) {
+      const {
+        field
+      } = e.currentTarget.dataset
+      this.setData({
+        [`formDataEdit.${field}`]: e.detail.value
+      })
+    },
+    showDialog: function () {
+      this.setData({
+        dialogShow: true
+      })
+    },
+    hideDialog: function () {
+      this.setData({
+        dialogShow: false
+      })
+    },
+    tapDialogButton: function (e) {
+      if (e.detail.index === 0) {
+        this.hideDialog()
+        return
+      }
+      this.selectComponent('#formEdit').validate((valid, errors) => {
+        if (!valid) {
+          const firstError = Object.keys(errors)
+          if (firstError.length) {
+            this.setData({
+              error: errors[firstError[0]].message
+            })
+          }
+        } else {
+          const params = {
+            ...this.data.formDataEdit
+          }
+          wx.showToast({
+            title: '保存中',
+            mask: true
+          })
+          ADMIN.apiExtNewsSave(params).then(res => {
+            if (res.code !== 0) {
+              this.setData({
+                error: res.msg
+              })
+              wx.hideToast()
+              return
+            }
+            wx.showToast({
+              title: '保存成功',
+              icon: 'none'
+            })
+            this.hideDialog()
+            this.getList()
+          }).catch(() => {
+            wx.hideToast()
+          })
+        }
+      })
+    },
     slideButtonTap: function (e) {
       const item = this.data.newsResult.result[e.currentTarget.id]
+      if (e.detail.index === 0) {
+        this.setData({
+          formDataEdit: item
+        })
+        this.showDialog()
+        return
+      }
       const params = {
         ...item,
         status: this.data.slideButtons[e.detail.index].status
