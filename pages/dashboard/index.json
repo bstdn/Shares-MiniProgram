@@ -3,12 +3,12 @@
   "enablePullDownRefresh": true,
   "component": true,
   "usingComponents": {
-    "mp-toptips": "/miniprogram_npm/weui-miniprogram/toptips/toptips",
-    "mp-cells": "/miniprogram_npm/weui-miniprogram/cells/cells",
-    "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
-    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog",
-    "mp-form": "/miniprogram_npm/weui-miniprogram/form/form",
-    "mp-tabbar": "/miniprogram_npm/weui-miniprogram/tabbar/tabbar",
-    "mp-slideview": "/miniprogram_npm/weui-miniprogram/slideview/slideview"
+    "mp-toptips": "weui-miniprogram/toptips/toptips",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-tabbar": "weui-miniprogram/tabbar/tabbar",
+    "mp-slideview": "weui-miniprogram/slideview/slideview"
   }
 }

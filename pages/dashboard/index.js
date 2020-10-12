@@ -228,9 +228,10 @@ Component({
           }
           wx.showToast({
             title: '保存中',
+            icon: 'loading',
             mask: true
           })
-          ADMIN.apiExtNewsSave(params).then(res => {
+          ADMIN.apiExtNewsSave(params).then(async res => {
             if (res.code !== 0) {
               this.setData({
                 error: res.msg
@@ -238,12 +239,11 @@ Component({
               wx.hideToast()
               return
             }
-            wx.showToast({
-              title: '保存成功',
-              icon: 'none'
-            })
             this.hideDialog()
-            this.getList()
+            await this.getList()
+            wx.showToast({
+              title: '保存成功'
+            })
           }).catch(() => {
             wx.hideToast()
           })
