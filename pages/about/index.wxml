@@ -24,7 +24,7 @@
       </mp-cell>
     </mp-cells>
     <mp-cells title="反馈">
-      <button id="feedback" class="no_button" open-type='feedback' bindtap="clickBadge">
+      <button id="feedback" class="no_button" open-type="feedback" bindtap="clickBadge">
         <mp-cell title="意见建议" link hover>
           <mp-icon slot="icon" icon="pencil" color="#336699" style="margin-right: 10px;"/>
           <view slot="footer">
@@ -40,7 +40,7 @@
           <mp-badge wx:if="{{badgeData.author}}" style="margin-left: 5px;margin-right: 5px;"/>
         </view>
       </mp-cell>
-      <button id="share" class="no_button" open-type='share' bindtap="clickBadge">
+      <button id="share" class="no_button" open-type="share" bindtap="clickBadge">
         <mp-cell title="转发分享" link hover>
           <mp-icon slot="icon" icon="share" color="#ff3300" style="margin-right: 10px;"/>
           <view slot="footer">
