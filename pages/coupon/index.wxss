@@ -1,0 +1,35 @@
+/* pages/coupon/index.wxss */
+
+.box-card {
+  margin: 0 20rpx 20rpx 20rpx;
+  border-radius: 4px;
+  border: 1px solid #ebeef5;
+  background-color: #fff;
+  overflow: hidden;
+  color: #303133;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}
+.box-card .header {
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+.box-card .header .f {
+  border-left: 10rpx #ff9966 solid;
+  padding-left: 15rpx;
+}
+.box-card .header .b {
+  width: 50rpx !important;
+  font-weight: normal;
+  background-color: #ffffff;
+}
+.box-card .body {
+  padding: 10rpx;
+  text-align: center;
+}
+.box-card .body .pic {
+  width: 640rpx;
+  height: 300rpx;
+}
+.box-card:last-child {
+  margin-bottom: 0;
+}

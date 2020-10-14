@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/home/index",
+    "pages/coupon/index",
     "pages/answer/index",
     "pages/dashboard/index",
     "pages/admin/index",
@@ -24,6 +25,12 @@
         "iconPath": "images/icon_message.png",
         "selectedIconPath": "images/icon_message_active.png",
         "text": "提交答案"
+      },
+      {
+        "pagePath": "pages/coupon/index",
+        "iconPath": "images/icon_coupon.png",
+        "selectedIconPath": "images/icon_coupon_active.png",
+        "text": "吃喝券"
       },
       {
         "pagePath": "pages/sign/index",

@@ -1,0 +1,21 @@
+<!--pages/coupon/index.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <block wx:for="{{bannerList}}" wx:key="index">
+      <view class="box-card">
+        <view class="header">
+          <text class="f">{{item.title}}</text>
+          <button class="b" open-type="share" style="float: right;padding: 0">
+            <mp-icon slot="icon" icon="share"/>
+          </button>
+        </view>
+        <view class="body">
+          <image id="{{index}}" class="pic" src="https://dcdn.it120.cc/2020/10/14/80db95dc-37d2-480d-bab6-cb17c219acf1.png" bindtap="tapShare"/>
+        </view>
+      </view>
+    </block>
+    <view style="padding: 15px;color: #ccc;">
+      Tips:更多吃喝优惠券敬请期待~
+    </view>
+  </view>
+</view>

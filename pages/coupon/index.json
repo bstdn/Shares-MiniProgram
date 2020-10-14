@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "吃喝券",
+  "component": true,
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon"
+  }
+}
