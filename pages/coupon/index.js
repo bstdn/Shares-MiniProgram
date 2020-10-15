@@ -1,7 +1,10 @@
 // pages/coupon/index.js
 const WXAPI = require('apifm-wxapi')
+const behavior = require('../../utils/behavior')
+const AUTH = require('../../utils/auth')
 
 Component({
+  behaviors: [behavior],
   data: {
     bannerList: []
   },
@@ -22,6 +25,20 @@ Component({
     }
   },
   methods: {
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+      AUTH.checkHasLoggedIn().then(loggedIn => {
+        if (loggedIn) {
+          this.getUserApiInfo()
+        } else {
+          this.setData({
+            apiUserInfoMap: null
+          })
+        }
+      })
+    },
     /**
      * 用户点击右上角转发
      */
@@ -45,10 +62,26 @@ Component({
     },
     tapShare: function (e) {
       const item = this.data.bannerList[e.currentTarget.id]
-      wx.navigateToMiniProgram({
+      const content = {
         appId: item.remark,
         path: item.linkUrl
+      }
+      wx.navigateToMiniProgram({
+        ...content,
+        success: () => {
+          this.saveJson(content)
+        }
       })
+    },
+    saveJson: function (content) {
+      if (this.data.apiUserInfoMap) {
+        const params = {
+          content: JSON.stringify(content),
+          token: wx.getStorageSync('token'),
+          type: 'coupon'
+        }
+        WXAPI.jsonSet(params)
+      }
     }
   }
 })
