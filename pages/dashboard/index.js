@@ -83,12 +83,12 @@ Component({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+      this.changeNavBarTitle()
       ADMIN.checkHasLoggedIn().then(loggedIn => {
         if (!loggedIn) {
           this.goLogin()
         }
       })
-      this.changeNavBarTitle()
       if (this.data.current === 1) {
         this.getList()
       }

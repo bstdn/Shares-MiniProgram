@@ -14,21 +14,28 @@ const request = function request(url, method, data) {
       },
       success: res => {
         if (res.data.code === 100000) {
-          wx.showModal({
-            title: '提示',
-            content: '登录超时，请重新登录',
-            showCancel: false,
-            success: res => {
-              if (res.confirm) {
-                wx.removeStorageSync('x-token')
-                if (util.getCurrentPageUrl() !== '/pages/admin/index') {
+          const content = '登录超时，请重新登录'
+          if (util.getCurrentPageUrl() !== '/pages/admin/index') {
+            wx.showModal({
+              title: '提示',
+              content,
+              showCancel: false,
+              success: res => {
+                if (res.confirm) {
+                  wx.removeStorageSync('x-token')
                   wx.navigateTo({
                     url: '/pages/admin/index',
                   })
                 }
               }
-            }
-          })
+            })
+          } else {
+            wx.removeStorageSync('x-token')
+            wx.showToast({
+              title: content,
+              icon: 'none'
+            })
+          }
           reject('error')
         }
         resolve(res.data)
