@@ -10,7 +10,7 @@
           </button>
         </view>
         <view class="body">
-          <image id="{{index}}" class="pic" src="https://dcdn.it120.cc/2020/10/14/80db95dc-37d2-480d-bab6-cb17c219acf1.png" bindtap="tapShare"/>
+          <image id="{{index}}" class="pic" src="{{item.picUrl}}" bindtap="tapShare"/>
         </view>
       </view>
     </block>
