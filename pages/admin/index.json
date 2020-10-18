@@ -6,6 +6,7 @@
     "mp-cells": "weui-miniprogram/cells/cells",
     "mp-cell": "weui-miniprogram/cell/cell",
     "mp-form": "weui-miniprogram/form/form",
+    "mp-badge": "weui-miniprogram/badge/badge",
     "mp-icon": "weui-miniprogram/icon/icon"
   }
 }

@@ -93,6 +93,7 @@ Component({
           }
           const params = {
             ...this.data.formData,
+            keywords: this.data.apiUserInfoMap.base.avatarUrl,
             token: wx.getStorageSync('token')
           }
           this.setData({

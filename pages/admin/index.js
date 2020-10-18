@@ -1,6 +1,7 @@
 // pages/admin/index.js
 const behaviorAdmin = require('../../utils/behavior-admin')
 const ADMIN = require('../../utils/admin')
+const util = require('../../utils/util')
 
 Component({
   behaviors: [behaviorAdmin],
@@ -26,7 +27,8 @@ Component({
         message: '请输入验证码'
       }
     }],
-    imgKey: undefined
+    imgKey: undefined,
+    badge: 0
   },
   lifetimes: {
     /**
@@ -47,6 +49,7 @@ Component({
       ADMIN.checkHasLoggedIn().then(loggedIn => {
         if (loggedIn) {
           this.getAdminUserInfo()
+          this.getVerifyCount()
         }
       })
     },
@@ -102,6 +105,18 @@ Component({
             this.onShow()
           })
         }
+      })
+    },
+    getVerifyCount: function () {
+      const params = {
+        categoryId: wx.getStorageSync('answerCategoryId'),
+        dateAddBegin: util.parseTime(new Date(), '{y}-{m}-{d}'),
+        status: 0
+      }
+      ADMIN.apiExtNewsList(params).then(res => {
+        this.setData({
+          badge: res.code === 0 ? res.data.totalRow : 0
+        })
       })
     }
   }

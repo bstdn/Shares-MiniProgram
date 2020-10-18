@@ -4,7 +4,10 @@
   <view wx:if="{{adminUserInfoMap}}" class="page__bd">
     <view class="weui-btn-area">
       <button data-current="0" class="weui-btn" type="primary" bindtap="goDashboard">每日答题</button>
-      <button data-current="1" class="weui-btn" type="primary" bindtap="goDashboard">审核答案</button>
+      <button data-current="1" class="weui-btn" type="primary" bindtap="goDashboard">
+        审核答案
+        <mp-badge wx:if="{{badge}}" content="{{badge}}" style="margin-left: 5px;"/>
+      </button>
       <button class="weui-btn" type="warn" plain="true" bindtap="adminLogout">退出登录</button>
     </view>
   </view>

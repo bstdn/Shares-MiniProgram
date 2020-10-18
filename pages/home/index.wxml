@@ -4,8 +4,11 @@
     <view style="padding: 15px;color: #ccc;">
       Tips:{{answerTips}}
     </view>
-    <block wx:for="{{answerList}}" wx:key="index" wx:for-item="item">
+    <block wx:for="{{answerList}}" wx:key="index">
       <view class="answer-box">
+        <view class="avatar">
+          <image wx:if="{{item.keywords != '1'}}" class="userinfo-avatar" src="{{item.keywords}}" background-size="cover"/>
+        </view>
         <view class="box">
           <text class="date">日期:{{item.dateUpdate ? item.dateUpdate : item.dateAdd}}</text>
           <view class="body">{{item.title}}</view>
