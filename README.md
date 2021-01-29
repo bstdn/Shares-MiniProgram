@@ -67,12 +67,6 @@ npm install
 
 [《如何查看你自己的subDomain》](https://www.it120.cc/help/qr6l4m.html)
 
-## 赞赏
-
-**请作者喝杯咖啡吧！(微信号/QQ号：99808359)**
-
-<img width="236" alt="微信扫一扫" src="https://images.gitee.com/uploads/images/2019/1122/203838_862f04ff_1185106.jpeg">
-
 # 授权协议
 
 [MIT License](LICENSE)
