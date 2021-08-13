@@ -22,6 +22,9 @@
       <mp-cell title="管理入口" link hover bindtap="goAdmin">
         <mp-icon slot="icon" icon="me" color="#0099CC" style="margin-right: 10px;"/>
       </mp-cell>
+      <mp-cell title="羽毛球比分" link hover bindtap="goBadmintonScore">
+        <mp-icon slot="icon" icon="note" color="#0099EE" style="margin-right: 10px;"/>
+      </mp-cell>
     </mp-cells>
     <mp-cells title="反馈">
       <button id="feedback" class="no_button" open-type="feedback" bindtap="clickBadge">

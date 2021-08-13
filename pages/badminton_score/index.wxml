@@ -1,0 +1,48 @@
+<!--pages/badminton_score/index.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex flex-box">
+      <view class="weui-flex__item center text-box ptm10 {{heightLight[teamRed]}}">
+        <input placeholder="填写队名" value="{{name[teamRed]}}" id="{{teamRed}}" bindinput="setName" />
+      </view>
+      <view class="weui-flex__item center text-box ptm10 {{heightLight[teamBlue]}}">
+        <input placeholder="填写队名" value="{{name[teamBlue]}}" id="{{teamBlue}}" bindinput="setName" />
+      </view>
+    </view>
+    <view class="weui-flex flex-box">
+      <view class="weui-flex__item"></view>
+      <view class="weui-flex__item center text-box ptm20 ts36 {{heightLight[teamRed]}}" id="{{teamRed}}"
+        bindtap="addScore">
+        {{score[teamRed]}}
+      </view>
+      <view class="weui-flex__item"></view>
+      <view class="weui-flex__item center text-box ptm20 ts36 {{heightLight[teamBlue]}}" id="{{teamBlue}}"
+        bindtap="addScore">
+        {{score[teamBlue]}}
+      </view>
+      <view class="weui-flex__item"></view>
+    </view>
+    <view class="weui-flex flex-box">
+      <view class="weui-flex__item"></view>
+      <view class="weui-flex__item center">
+        <button type="default" size="mini" id="{{teamRed}}" bindtap="reduceScore">减</button>
+      </view>
+      <view class="weui-flex__item"></view>
+      <view class="weui-flex__item center">
+        <button type="default" size="mini" id="{{teamBlue}}" bindtap="reduceScore">减</button>
+      </view>
+      <view class="weui-flex__item"></view>
+    </view>
+    <view class="weui-btn-area view-btn">
+      <button class="weui-btn btn" type="primary" size="mini" bindtap="clearScore">清空</button>
+      <button class="weui-btn btn" type="primary" size="mini" bindtap="switchCourt">换场</button>
+      <button class="weui-btn btn" type="primary" size="mini" bindtap="settlement">结算</button>
+    </view>
+
+    <view wx:if="{{logs}}" class="weui-cells">
+      <mp-slideview wx:for="{{logs}}" wx:key="index" buttons="{{slideLogsButtons}}" id="{{index}}" bindbuttontap="slideLogsButtonTap">
+        <mp-cell value="{{index + 1}}. {{item}}"></mp-cell>
+      </mp-slideview>
+    </view>
+  </view>
+</view>

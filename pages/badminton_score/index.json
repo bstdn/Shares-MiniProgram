@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "羽毛球比分记录",
+  "component": true,
+  "usingComponents": {
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-slideview": "weui-miniprogram/slideview/slideview"
+  }
+}

@@ -1,0 +1,47 @@
+/* pages/badminton_score/index.wxss */
+.center {
+  text-align: center;
+}
+
+.ptm10 {
+  padding: 10rpx 0;
+}
+
+.ptm20 {
+  padding: 40rpx 0;
+}
+
+.height-light {
+  background-color: #f7f7a9;
+}
+
+.flex-box {
+  margin-bottom: 10rpx;
+}
+
+.flex-box:last-child {
+  margin-bottom: 0;
+}
+
+.text-box {
+  margin: auto 15rpx;
+  border: 1px rgba(23, 139, 8, 0.89) solid;
+  border-radius: 10rpx;
+}
+
+.ts36 {
+  font-size: 36rpx;
+}
+
+.view-btn {
+  text-align: center;
+}
+
+.view-btn .btn {
+  margin-right: 5px;
+
+}
+
+.view-btn .btn:last-child {
+  margin-right: 0;
+}

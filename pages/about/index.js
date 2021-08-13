@@ -64,6 +64,11 @@ Component({
         url: '../admin/index',
       })
     },
+    goBadmintonScore: function () {
+      wx.navigateTo({
+        url: '../badminton_score/index',
+      })
+    },
     clickBadge: function (e) {
       this.badgeChange(e.currentTarget.id)
     },

@@ -6,7 +6,8 @@
     "pages/dashboard/index",
     "pages/admin/index",
     "pages/sign/index",
-    "pages/about/index"
+    "pages/about/index",
+    "pages/badminton_score/index"
   ],
   "tabBar": {
     "selectedColor": "#1296db",
